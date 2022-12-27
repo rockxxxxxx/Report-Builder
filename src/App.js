@@ -3,6 +3,7 @@ import SideBar from "./Components/Dashboard/SideBar";
 import NavBar from "./Components/Navigation/NavBar";
 import { Row, Col } from "react-bootstrap";
 import ToolBar from "./Components/Dashboard/ToolBar";
+import Canvas from "./Components/Dashboard/Canvas";
 
 function App() {
   return (
@@ -12,7 +13,9 @@ function App() {
         <Col>
           <SideBar />
         </Col>
-        <Col xs={7}></Col>
+        <Col xs={7} style={{ marginTop: "20px" }}>
+          <Canvas />
+        </Col>
         <Col>
           <ToolBar />
         </Col>
