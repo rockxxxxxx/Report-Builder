@@ -17,7 +17,7 @@ export default function ChartGraph() {
   };
 
   return (
-    <Card>
+    <Card style={{ height: "300px", overflow: "auto" }}>
       <Draggable bounds={{ left: 0, top: 0, right: 0, bottom: 230 }}>
         <Card.Header>
           <div className="card-header d-flex justify-content-between align-items-center">

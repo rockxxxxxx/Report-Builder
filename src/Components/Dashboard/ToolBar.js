@@ -44,10 +44,10 @@ export default function ToolBar() {
                   onStop={() => {
                     updateList({
                       i: `${name}${list.length}`,
-                      x: list.length,
+                      x: list.length % 2 === 0 ? 0 : 1,
                       y: 0,
-                      w: 1,
-                      h: 1,
+                      w: name === "Title" ? 2 : 1,
+                      h: name === "Title" ? 0.2 : 1,
                       c: draggedComponent[name],
                     });
                   }}

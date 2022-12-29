@@ -1,26 +1,47 @@
 import "./App.css";
 import SideBar from "./Components/Dashboard/SideBar";
 import NavBar from "./Components/Navigation/NavBar";
-import { Row, Col } from "react-bootstrap";
+
 import ToolBar from "./Components/Dashboard/ToolBar";
 import Canvas from "./Components/Dashboard/Canvas";
+import React from "react";
+
+import { Responsive, WidthProvider } from "react-grid-layout";
+
+const ResponsiveGridLayout = WidthProvider(Responsive);
 
 function App() {
+  var layout = [
+    { i: "NavBar", x: 0, y: 0, w: 12, h: 0.2, static: true },
+    { i: "SideBar", x: 0, y: 0, w: 2, h: 1, static: true },
+    { i: "Canvas", x: 2, y: 0, w: 6, h: 1, static: true },
+    { i: "ToolBar", x: 9, y: 0, w: 3, h: 1, static: true },
+  ];
+  layout = { lg: layout };
   return (
-    <div className="App">
-      <Row>
+    <>
+      <div key="NavBar" style={{ backgroundColor: "yellow" }}>
         <NavBar />
-        <Col>
+      </div>
+      <ResponsiveGridLayout
+        className="layout"
+        layouts={layout}
+        breakpoints={{ lg: 1200 }}
+        cols={{ lg: 12 }}
+        rowHeight={281}
+        width={1200}
+      >
+        <div key="SideBar">
           <SideBar />
-        </Col>
-        <Col xs={7} style={{ marginTop: "20px" }}>
+        </div>
+        <div key="Canvas">
           <Canvas />
-        </Col>
-        <Col>
+        </div>
+        <div key="ToolBar">
           <ToolBar />
-        </Col>
-      </Row>
-    </div>
+        </div>
+      </ResponsiveGridLayout>
+    </>
   );
 }
 

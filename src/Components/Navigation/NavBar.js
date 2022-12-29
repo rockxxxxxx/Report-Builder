@@ -6,12 +6,7 @@ import BreadCrumbs from "./BreadCrumbs";
 
 export default function NavBar() {
   return (
-    <Navbar
-      bg="light"
-      variant="light"
-      className="navbar"
-      style={{ marginLeft: "5%", paddingRight: "100px" }}
-    >
+    <Navbar bg="light" variant="light" className="navbar">
       <Button
         variant="secondary"
         size="md"

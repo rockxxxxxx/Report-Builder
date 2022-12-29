@@ -6,9 +6,7 @@ import { useContext } from "react";
 
 export default function Canvas() {
   const { list } = useContext(DragDrop);
-  const GridItemWrapper = styled.div`
-    background: #f5f5f5;
-  `;
+  const GridItemWrapper = styled.div``;
 
   const GridItemContent = styled.div`
     padding: 8px;
@@ -20,10 +18,10 @@ export default function Canvas() {
 
   return (
     <Root>
-      <GridLayout layout={list} cols={5} rowHeight={300} width={1000}>
+      <GridLayout layout={list} cols={2} rowHeight={300} width={850}>
         {list.map((lay) => {
           return (
-            <GridItemWrapper key={lay.i}>
+            <GridItemWrapper key={lay.i} r>
               <GridItemContent>{lay.c}</GridItemContent>
             </GridItemWrapper>
           );
