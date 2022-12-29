@@ -13,7 +13,7 @@ export default function BarGraph() {
   };
 
   return (
-    <Card style={{ height: "300px", overflow: "auto", marginBottom: "20px" }}>
+    <Card>
       <Draggable bounds={{ left: 0, top: 0, right: 0, bottom: 230 }}>
         <Card.Header>
           <div className="card-header d-flex justify-content-between align-items-center">

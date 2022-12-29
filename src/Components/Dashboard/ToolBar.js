@@ -3,20 +3,23 @@ import { toolBarName } from "../../Resources/toolBarName";
 import { Button, ButtonGroup } from "react-bootstrap";
 import Draggable from "react-draggable";
 import { DragDrop } from "../../contextApi/dragDropContext";
+import Title from "../ToolBarComponent/Title";
+import Table from "../ToolBarComponent/Table";
+import BarGraph from "../ToolBarComponent/BarGraph";
+import ChartGraph from "../ToolBarComponent/ChartGraph";
 
 export default function ToolBar() {
-  const { table, setTable, chart, setChart, bar, setBar, setList, list } =
-    useContext(DragDrop);
+  const { setList, list } = useContext(DragDrop);
 
-  const draggedComponent = [
-    { name: "Table", value: table, updateValue: () => setTable(true) },
-    { name: "Bar", value: bar, updateValue: () => setBar(true) },
-    { name: "Chart", value: chart, updateValue: () => setChart(true) },
-  ];
-
-  const updateList = (data, update) => {
+  const draggedComponent = {
+    Table: <Table />,
+    Bar: <BarGraph />,
+    Chart: <ChartGraph />,
+    Title: <Title />,
+  };
+  const updateList = (data) => {
     setList([...list, data]);
-    update();
+    console.log(list);
   };
 
   return (
@@ -32,33 +35,31 @@ export default function ToolBar() {
           <Button variant="secondary">Charts</Button>
         </ButtonGroup>
         <div className="d-grid gap-2">
-          {toolBarName.map((name) => {
+          {toolBarName.map((name, index) => {
             return (
               <>
-                {draggedComponent.map((component) => {
-                  return (
-                    component.name === name &&
-                    component.value === false && (
-                      <Draggable
-                        axis="x"
-                        onStop={() => {
-                          updateList(
-                            { id: name, name: name },
-                            component.updateValue()
-                          );
-                        }}
-                      >
-                        <Button
-                          variant="outline-success"
-                          size="md"
-                          style={{ textAlign: "left" }}
-                        >
-                          {name}
-                        </Button>
-                      </Draggable>
-                    )
-                  );
-                })}
+                <Draggable
+                  bounds={{ left: 0, top: 0, right: 0, bottom: 0 }}
+                  axis="x"
+                  onStop={() => {
+                    updateList({
+                      i: `${name}${list.length}`,
+                      x: list.length,
+                      y: 0,
+                      w: 1,
+                      h: 1,
+                      c: draggedComponent[name],
+                    });
+                  }}
+                >
+                  <Button
+                    variant="outline-success"
+                    size="md"
+                    style={{ textAlign: "left" }}
+                  >
+                    {name}
+                  </Button>
+                </Draggable>
               </>
             );
           })}
